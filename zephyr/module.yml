@@ -5,3 +5,5 @@ name: hal_hisilicon
 build:
   cmake: .
   kconfig: Kconfig
+  settings:
+    dts_root: .

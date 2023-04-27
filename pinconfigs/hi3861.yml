@@ -1,0 +1,257 @@
+# Copyright (c) 2023 Chen Xingyu <hi@xingrz.me>
+# SPDX-License-Identifier: Apache-2.0
+
+# Sources:
+# - Hi3861V100 User Manual (Revision 04 - 2020-07-29)
+
+pads:
+  - pad: 0
+    reg: GPIO_00
+    drive_strength: [1, 1]
+    signals:
+      - GPIO[0]
+      - HW_ID[0]
+      - UART1_TXD
+      - SPI1_CK
+      - JTAG_TDO
+      - PWM3_OUT
+      - I2C1_SDA
+
+  - pad: 1
+    reg: GPIO_01
+    drive_strength: [1, 1]
+    signals:
+      - GPIO[1]
+      - HW_ID[1]
+      - UART1_RXD
+      - SPI1_RXD
+      - JTAG_TCK
+      - PWM4_OUT
+      - I2C1_SCL
+      - BT_FREQ
+
+  - pad: 2
+    reg: GPIO_02
+    drive_strength: [1, 1]
+    signals:
+      - GPIO[2]
+      - REFCLK_FREQ_STATUS
+      - UART1_RTS_N
+      - SPI1_TXD
+      - JTAG_TRSTN
+      - PWM2_OUT
+      - DIAG[0]
+      - SSI_CLK
+
+  - pad: 3
+    reg: GPIO_03
+    drive_strength: [1, 1]
+    signals:
+      - GPIO[3]
+      - UART0_TXD
+      - UART1_CTS_N
+      - SPI1_CSN
+      - JTAG_TDI
+      - PWM5_OUT
+      - I2C1_SDA
+      - SSI_DATA
+
+  - pad: 4
+    reg: GPIO_04
+    drive_strength: [1, 1]
+    signals:
+      - GPIO[4]
+      - HW_ID[3]
+      - UART0_RXD
+      - JTAG_TMS
+      - PWM1_OUT
+      - I2C1_SCL
+      - DIAG[7]
+
+  - pad: 5
+    reg: GPIO_05
+    drive_strength: [1, 1]
+    signals:
+      - GPIO[5]
+      - HW_ID[4]
+      - UART1_RXD
+      - SPI0_CSN
+      - DIAG[1]
+      - PWM2_OUT
+      - I2S0_MCLK
+      - BT_STATUS
+
+  - pad: 6
+    reg: GPIO_06
+    drive_strength: [1, 1]
+    signals:
+      - GPIO[6]
+      - JTAG_MODE
+      - UART1_TXD
+      - SPI0_CK
+      - DIAG[2]
+      - PWM3_OUT
+      - I2S0_TX
+      - COEX_SWITCH
+
+  - pad: 7
+    reg: GPIO_07
+    drive_strength: [1, 1]
+    signals:
+      - GPIO[7]
+      - HW_ID[5]
+      - UART1_CTS_N
+      - SPI0_RXD
+      - DIAG[3]
+      - PWM0_OUT
+      - I2S0_BCLK
+      - BT_ACTIVE
+
+  - pad: 8
+    reg: GPIO_08
+    drive_strength: [1, 1]
+    signals:
+      - GPIO[8]
+      - JTAG_ENABLE
+      - UART1_RTS_N
+      - SPI0_TXD
+      - DIAG[4]
+      - PWM1_OUT
+      - I2S0_WS
+      - WLAN_ACTIVE
+
+  - pad: 9
+    reg: GPIO_09
+    drive_strength: [1, 1]
+    signals:
+      - GPIO[9]
+      - I2C0_SCL
+      - UART2_RTS_N
+      - SDIO_D2
+      - SPI0_TXD
+      - PWM0_OUT
+      - DIAG[5]
+      - I2S0_MCLK
+
+  - pad: 10
+    reg: GPIO_10
+    drive_strength: [1, 1]
+    signals:
+      - GPIO[10]
+      - I2C0_SDA
+      - UART2_CTS_N
+      - SDIO_D3
+      - SPI0_CK
+      - PWM1_OUT
+      - DIAG[6]
+      - I2S0_TX
+
+  - pad: 11
+    reg: GPIO_11
+    drive_strength: [1, 1]
+    signals:
+      - GPIO[11]
+      - HW_ID[6]
+      - UART2_TXD
+      - SDIO_CMD
+      - SPI0_RXD
+      - PWM2_OUT
+      - RF_TX_EN_EXT
+      - I2S0_RX
+
+  - pad: 12
+    reg: GPIO_12
+    drive_strength: [1, 1, 1]
+    signals:
+      - GPIO[12]
+      - HW_ID[7]
+      - UART2_RXD
+      - SDIO_CLK
+      - SPI0_CSN
+      - PWM3_OUT
+      - RF_RX_EN_EXT
+      - I2S0_BCLK
+
+  - pad: 13
+    reg: GPIO_13
+    drive_strength: [1, 1]
+    signals:
+      - SSI_DATA
+      - UART0_TXD
+      - UART2_RTS_N
+      - SDIO_D0
+      - GPIO[13]
+      - PWM4_OUT
+      - I2C0_SDA
+      - I2S0_WS
+
+  - pad: 14
+    reg: GPIO_14
+    drive_strength: [1, 1]
+    signals:
+      - SSI_CLK
+      - UART0_RXD
+      - UART2_CTS_N
+      - SDIO_D1
+      - GPIO[14]
+      - PWM5_OUT
+      - I2C0_SCL
+      - HW_ID[2]
+
+  - pad: 15
+    reg: SFC_CSN
+    drive_strength: [1, 1, 0]
+    signals:
+      - SFC_CSN
+      - SDIO_D2
+      - GPIO[9]
+      - DIAG[5]
+      - SPI0_TXD
+
+  - pad: 16
+    reg: SFC_IO1
+    drive_strength: [1, 1, 0]
+    signals:
+      - SFC_DO
+      - SDIO_D3
+      - GPIO[10]
+      - DIAG[6]
+      - SPI0_CK
+
+  - pad: 17
+    reg: SFC_IO2
+    drive_strength: [1, 1, 0]
+    signals:
+      - SFC_WPN
+      - SDIO_CMD
+      - GPIO[11]
+      - RF_TX_EN_EXT
+      - SPI0_RXD
+
+  - pad: 18
+    reg: SFC_IO0
+    drive_strength: [1, 1, 0]
+    signals:
+      - SFC_DI
+      - SDIO_CLK
+      - GPIO[12]
+      - RF_RX_EN_EXT
+      - SPI0_CSN
+
+  - pad: 19
+    reg: SFC_CLK
+    drive_strength: [1, 0, 1]
+    signals:
+      - SFC_CLK
+      - SDIO_D0
+      - GPIO[13]
+      - SSI_DATA
+
+  - pad: 20
+    reg: SFC_IO3
+    drive_strength: [1, 1, 0]
+    signals:
+      - SFC_HOLDN
+      - SDIO_D1
+      - GPIO[14]
+      - SSI_CLK
