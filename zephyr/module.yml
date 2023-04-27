@@ -7,3 +7,20 @@ build:
   kconfig: Kconfig
   settings:
     dts_root: .
+blobs:
+  - path: lib/hi3861/libbase.o
+    sha256: 425ac0f53e78ffc3e5209d182ea17b886b8d37a4ae96a5ae543b3ec07aa820aa
+    type: lib
+    version: '1.0'
+    license-path: zephyr/blobs/LICENSE
+    url: https://gitee.com/openharmony/device_soc_hisilicon/raw/master/hi3861v100/sdk_liteos/build/libs/libbase.o
+    description: "Binary libraries required by loaderboot and flashboot for Hi3861"
+    doc-url: https://gitee.com/openharmony/device_soc_hisilicon/tree/master/hi3861v100/sdk_liteos
+  - path: lib/hi3861/libcodebase.o
+    sha256: c24b0e62c0fb044a8897cff7a986e61fbecee214c4ee38a11a9891f064ccbdad
+    type: lib
+    version: '1.0'
+    license-path: zephyr/blobs/LICENSE
+    url: https://gitee.com/openharmony/device_soc_hisilicon/raw/master/hi3861v100/sdk_liteos/build/libs/libcodebase.o
+    description: "Binary libraries required by loaderboot and flashboot for Hi3861"
+    doc-url: https://gitee.com/openharmony/device_soc_hisilicon/tree/master/hi3861v100/sdk_liteos
