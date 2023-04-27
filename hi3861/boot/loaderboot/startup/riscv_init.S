@@ -84,13 +84,43 @@ trap_vector:
 
 .macro push_reg
     addi  sp, sp, -(INT_SIZE_ON_STACK)
-    stmia {ra, t0-t2, a0-a7, t3-t6}, (sp)
+    SREG x1, 0 * REGBYTES(sp)
+    SREG x5, 1 * REGBYTES(sp)
+    SREG x6, 2 * REGBYTES(sp)
+    SREG x7, 3 * REGBYTES(sp)
+    SREG x10, 4 * REGBYTES(sp)
+    SREG x11, 5 * REGBYTES(sp)
+    SREG x12, 6 * REGBYTES(sp)
+    SREG x13, 7 * REGBYTES(sp)
+    SREG x14, 8 * REGBYTES(sp)
+    SREG x15, 9 * REGBYTES(sp)
+    SREG x16, 10 * REGBYTES(sp)
+    SREG x17, 11 * REGBYTES(sp)
+    SREG x28, 12 * REGBYTES(sp)
+    SREG x29, 13 * REGBYTES(sp)
+    SREG x30, 14 * REGBYTES(sp)
+    SREG x31, 15 * REGBYTES(sp)
     addi  sp, sp, -(INT_SIZE_ON_STACK)
 .endm
 
 .macro pop_reg
     addi  sp, sp, INT_SIZE_ON_STACK
-    ldmia {ra, t0-t2, a0-a7, t3-t6},(sp)
+    LREG x1, 0 * REGBYTES(sp)
+    LREG x5, 1 * REGBYTES(sp)
+    LREG x6, 2 * REGBYTES(sp)
+    LREG x7, 3 * REGBYTES(sp)
+    LREG x10, 4 * REGBYTES(sp)
+    LREG x11, 5 * REGBYTES(sp)
+    LREG x12, 6 * REGBYTES(sp)
+    LREG x13, 7 * REGBYTES(sp)
+    LREG x14, 8 * REGBYTES(sp)
+    LREG x15, 9 * REGBYTES(sp)
+    LREG x16, 10 * REGBYTES(sp)
+    LREG x17, 11 * REGBYTES(sp)
+    LREG x28, 12 * REGBYTES(sp)
+    LREG x29, 13 * REGBYTES(sp)
+    LREG x30, 14 * REGBYTES(sp)
+    SREG x31, 15 * REGBYTES(sp)
     addi  sp, sp, INT_SIZE_ON_STACK
 .endm
 
