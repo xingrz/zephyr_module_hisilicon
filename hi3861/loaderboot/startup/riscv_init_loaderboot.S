@@ -269,11 +269,6 @@ clear_bss_loop:
     addi t0, t0, 4          /* increment clear index pointer */
     blt     t0, t1, clear_bss_loop /* are we at the end yet, if not , contiue till the end */
 
-clear_rom_bss:
-    la t0, __rom_bss_start
-    la t1, __rom_bss_end
-    li t2, 0x00000000
-
 clear_rom_bss_loop:
     sw      t2, (t0)        /* clear ROM_BSS location */
     addi    t0, t0, 4       /* increment clear index pointer */

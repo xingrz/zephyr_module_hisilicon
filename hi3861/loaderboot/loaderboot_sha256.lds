@@ -32,14 +32,6 @@ SECTIONS
         KEEP(*(.text.entry))
     } > LOADER_BOOT_ADDR
 
-    .rom.text :
-    {
-        . = ALIGN(4);
-        KEEP(SORT(libbase.o)(.text*))
-        KEEP(SORT(libbase.o)(.rodata*))
-        . = ALIGN(4);
-    } > FIXED_ROM_ADDR
-
     .rom.code.text :
     {
         . = ALIGN(4);
@@ -87,17 +79,6 @@ SECTIONS
         __code_rom_copy_ram_end = .;
     }>CODE_ROM_BSS_DATA AT>CODE_ROM_ADDR
     __code_rom_copy_size = __code_rom_copy_ram_end - __code_rom_copy_ram_start;
-
-    .rom.bss :
-    {
-        . = ALIGN(4);
-        __rom_bss_start = .;
-        KEEP(libbase.o (.bss))
-        KEEP(libbase.o (.bss*))
-        KEEP(libbase.o (COMMON))
-        . = ALIGN(4);
-        __rom_bss_end = .;
-    } > ROM_BSS_DATA AT>FIXED_ROM_ADDR
 
     .rom.code.bss :
     {
