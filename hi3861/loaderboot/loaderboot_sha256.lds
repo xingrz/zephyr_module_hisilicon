@@ -3,22 +3,11 @@ ENTRY(_start)
 
 MEMORY
 {
-    /* ram for stack */
-    STACK(xrw) : ORIGIN = 0x100000,LENGTH = 8K
-    /* ram for common bss and data */
-    SRAM(xrw) : ORIGIN = 0x100000+8K,LENGTH = 8K
-    /* ram for fix rom bss and data */
-    ROM_BSS_DATA(rx): ORIGIN = 0x100000+16K,LENGTH = 2K
-    /* ram for code rom bss and data */
-    CODE_ROM_BSS_DATA(rx): ORIGIN = 0x100000+18K,LENGTH = 2K
-    /* ram for heap */
-    HEAP(xrw): ORIGIN = 0x100000+20K,LENGTH = 20K
-    /* ram for loaderboot */
-    LOADER_BOOT_ADDR(rx): ORIGIN = 0x100000+40K+0x040,LENGTH = 80K
-    /* rom for fixed rom */
-    FIXED_ROM_ADDR(rx): ORIGIN = 0x00000000+11K,LENGTH = 21K
-    /* rom for code rom */
-    CODE_ROM_ADDR(rx): ORIGIN = 0x003b8000+278K,LENGTH = 10K
+    STACK(rwx)              : ORIGIN = 0x00100000               , LENGTH = 8K
+    HEAP(rwx)               : ORIGIN = 0x00100000 + 20K         , LENGTH = 20K
+    LOADER_BOOT(rx)         : ORIGIN = 0x00100000 + 40K + 0x040 , LENGTH = 80K
+    FIXED_ROM(rx)           : ORIGIN = 0x00000000 + 11K         , LENGTH = 21K
+    CODE_ROM(rx)            : ORIGIN = 0x003b8000 + 278K        , LENGTH = 10K
 }
 
 STACK_SIZE      = 6k;
@@ -26,11 +15,10 @@ NMI_STACK_SIZE  = 2K;
 
 SECTIONS
 {
-      /* The startup code goes first into FLASH */
     .text.entry : ALIGN(4)
     {
         KEEP(*(.text.entry))
-    } > LOADER_BOOT_ADDR
+    } > LOADER_BOOT
 
     .rom.code.text :
     {
@@ -38,9 +26,8 @@ SECTIONS
         KEEP(SORT(libcodebase.o)(.text*))
         KEEP(SORT(libcodebase.o)(.rodata*))
         . = ALIGN(4);
-    } > CODE_ROM_ADDR
+    } > CODE_ROM
 
-    /* Stack in SRAM at Highest addresses */
     .stacks (NOLOAD) :
     {
         . = ALIGN(4);
@@ -65,7 +52,7 @@ SECTIONS
         KEEP(SORT(libbase.o) (.data*))
         . = ALIGN(4);
         __rom_copy_ram_end = .;
-    } > ROM_BSS_DATA AT>FIXED_ROM_ADDR
+    } > FIXED_ROM
     __rom_copy_size = __rom_copy_ram_end - __rom_copy_ram_start;
 
     .rom.code.data :
@@ -77,7 +64,7 @@ SECTIONS
         KEEP(SORT(libcodebase.o) (.data*))
         . = ALIGN(4);
         __code_rom_copy_ram_end = .;
-    }>CODE_ROM_BSS_DATA AT>CODE_ROM_ADDR
+    } > CODE_ROM
     __code_rom_copy_size = __code_rom_copy_ram_end - __code_rom_copy_ram_start;
 
     .rom.code.bss :
@@ -89,11 +76,11 @@ SECTIONS
         KEEP(libcodebase.o (COMMON))
         . = ALIGN(4);
         __code_rom_bss_end = .;
-    }>CODE_ROM_BSS_DATA AT>CODE_ROM_ADDR
+    } > CODE_ROM
 
     .text : ALIGN(4)
     {
-        __start_addr = .;
+        __start = .;
         *(.text*)
         *(.ram.text*)
         . = ALIGN(4);
@@ -102,9 +89,8 @@ SECTIONS
         . = ALIGN(4);
         __rodata_end = .;
         __text_end = .;
-    } > LOADER_BOOT_ADDR
+    } > LOADER_BOOT
 
-    /* data section */
     .data : ALIGN(4)
     {
         __data_load = LOADADDR(.data);
@@ -112,9 +98,8 @@ SECTIONS
         *(.data*)
         . = ALIGN(4);
         __data_end = .;
-    } > LOADER_BOOT_ADDR
+    } > LOADER_BOOT
 
-    /* bss section */
     .bss (NOLOAD) : ALIGN(4)
     {
         __bss_begin__ = .;
@@ -122,7 +107,7 @@ SECTIONS
         *(COMMON)
         . = ALIGN(4);
         __bss_end__ = .;
-    } > LOADER_BOOT_ADDR
+    } > LOADER_BOOT
     __bss_size__ = __bss_end__ - __bss_begin__;
 
     .heap (NOLOAD) :
