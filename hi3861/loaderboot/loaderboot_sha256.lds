@@ -5,7 +5,7 @@ MEMORY
 {
     STACK(rwx)              : ORIGIN = 0x00100000               , LENGTH = 8K
     HEAP(rwx)               : ORIGIN = 0x00100000 + 20K         , LENGTH = 20K
-    LOADER_BOOT(rx)         : ORIGIN = 0x00100000 + 40K + 0x040 , LENGTH = 80K
+    LOADER_BOOT(rx)         : ORIGIN = 0x00100000 + 40K + 0x040 , LENGTH = 40K
     FIXED_ROM(rx)           : ORIGIN = 0x00000000 + 11K         , LENGTH = 21K
     CODE_ROM(rx)            : ORIGIN = 0x003b8000 + 278K        , LENGTH = 10K
 }
